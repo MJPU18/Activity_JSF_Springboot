@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<title>Notes Registration</title>
+	<link rel="stylesheet" type="text/css" href="styles/styles.css" />
+	<h:outputStylesheet library="webjars"
+		name="primeflex/3.3.1/primeflex.min.css" />
+</h:head>
+<h:body>
+	<div class="move">
+
+		<div class="movetext">
+			<h1>Write Your Notes</h1>
+		</div>
+
+		<h:form>
+			<div class="card">
+				<p:messages id="msgs" showDetail="true" closable="true" />
+				<div class="grid ui-fluid">
+					<div class="col-12 md:col-4">
+						<div class="ui-inputgroup">
+							<div class="ui-inputgroup-addon">
+								<i class="pi pi-user"></i>
+							</div>
+							<p:inputText id="name" placeholder="Username"
+								value="#{AdminBean.nombre}"/>
+						</div>
+					</div>
+
+					<div class="col-12 md:col-4">
+						<div class="ui-inputgroup">
+							<div class="ui-inputgroup-addon">1.</div>
+							<p:inputNumber placeholder="Note 1" value="#{AdminBean.note1}"
+								minValue="0" maxValue="5" />
+						</div>
+					</div>
+
+					<div class="col-12 md:col-4">
+						<div class="ui-inputgroup">
+							<div class="ui-inputgroup-addon">2.</div>
+							<p:inputNumber placeholder="Note 2" minValue="0" maxValue="5"
+								value="#{AdminBean.note2}" />
+						</div>
+					</div>
+				</div>
+
+				<div class="grid ui-fluid">
+					<div class="col-12 md:col-4">
+						<div class="ui-inputgroup">
+							<div class="ui-inputgroup-addon">3.</div>
+							<p:inputNumber placeholder="Note 3" minValue="0" maxValue="5"
+								value="#{AdminBean.note3}" />
+
+						</div>
+					</div>
+
+					<div class="col-12 md:col-4">
+						<div class="ui-inputgroup">
+							<div class="ui-inputgroup-addon">%</div>
+							<p:inputNumber placeholder="Average" disabled="true" minValue="0"
+								value="#{AdminBean.average}" maxValue="5" />
+
+						</div>
+					</div>
+				</div>
+
+				<div class="movebutton">
+					<p:commandButton type="submit" style="margin-right: .5rem"
+						value="Calculate" icon="pi pi-plus"
+						actionListener="#{AdminBean.createUser}" update="@form">
+					</p:commandButton>
+
+					<p:commandButton value="Show" icon="pi pi-search"
+						onclick="PF('dataTableDialog').show()" type="button" />
+
+					<p:dialog header="Notes Details" showEffect="fade" modal="true"
+						widgetVar="dataTableDialog" height="200" width="600">
+						<h:form>
+
+
+							<div class="card">
+								<h:form id="form">
+									<p:dataTable id="products" value="#{AdminBean.listUsers}"
+										rowKey="#{user[0]}" var="user" selectionMode="single">
+										<f:facet name="header"> Students Notes</f:facet>
+
+										<p:column headerText="Name">
+											<h:outputText value="#{user[1]}" />
+										</p:column>
+										<p:column headerText="Note 1">
+											<h:outputText value="#{user[2]}" />
+										</p:column>
+										<p:column headerText="Note 2">
+											<h:outputText value="#{user[3]}" />
+										</p:column>
+										<p:column headerText="Note 3">
+											<h:outputText value="#{user[4]}" />
+										</p:column>
+										<p:column headerText="Average">
+											<h:outputText value="#{user[5]}" />
+										</p:column>
+									</p:dataTable>
+
+								</h:form>
+							</div>
+
+
+
+						</h:form>
+
+					</p:dialog>
+
+
+				</div>
+
+
+
+			</div>
+		</h:form>
+
+	</div>
+
+</h:body>
+</html>

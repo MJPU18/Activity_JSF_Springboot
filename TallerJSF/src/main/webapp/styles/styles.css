@@ -1,0 +1,24 @@
+body {
+	padding: 2cm;
+	background: -webkit-radial-gradient(
+		#001d3d,
+		#000814
+	);
+	min-height: 100vh;
+	font-family: 'Consolas',sans-serif;
+	color: white;
+}
+
+.move {
+	padding-left: 2cm;
+	padding-right: 2cm;
+}
+
+.movetext{
+	text-align: center;
+}
+
+.movebutton{
+	padding: 1cm;
+	text-align: center;
+}
